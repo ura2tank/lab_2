@@ -16,11 +16,11 @@ const mimeTypes = {
 const createHandler = (req, res) => {
   const baseDir = path.join(__dirname, '.');
 
-  const url = req.url;
-  const method = req.method;
+  let url = req.url;
+  let method = req.method;
 
-  const ext = path.extname(url);
-  const contentType = mimeTypes[ext] || 'application/octet-stream';
+  let ext = path.extname(url);
+  let contentType = mimeTypes[ext] || 'application/octet-stream';
 
   console.log(url, method);
 
@@ -30,7 +30,7 @@ const createHandler = (req, res) => {
     res.end(fs.readFileSync("src/pages/index.html"));
     return
   }
-  try {
+  try {`-`
     if (url !== '/' && method === 'GET') {
       res.statusCode = 200;
       res.setHeader('Content-Type', contentType);
@@ -48,7 +48,7 @@ const createHandler = (req, res) => {
 
 }
 
-const server = createServer(createHandler);
+let server = createServer(createHandler);
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
