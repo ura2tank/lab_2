@@ -2,7 +2,6 @@ const { createServer } = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
 
-
 const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -30,7 +29,8 @@ const createHandler = (req, res) => {
     res.end(fs.readFileSync("src/pages/index.html"));
     return
   }
-  try {`-`
+  try {
+    `-`
     if (url !== '/' && method === 'GET') {
       res.statusCode = 200;
       res.setHeader('Content-Type', contentType);
@@ -44,7 +44,6 @@ const createHandler = (req, res) => {
     res.end(fs.readFileSync(path.join(baseDir, 'pages/404.html')));
     return
   }
-
 
 }
 
